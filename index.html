@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 LED Control</title>
+</head>
+<body>
+    <h1>ESP32 LED Control</h1>
+
+    <p><strong>Connection Status:</strong> <span id="status">Connecting...</span></p>
+
+    <button onclick="sendCommand('ON')">Turn ON</button>
+    <button onclick="sendCommand('OFF')">Turn OFF</button>
+
+    <p id="response"></p>
+
+    <script>
+        async function checkConnection() {
+            try {
+                const response = await fetch("https://3.26.19.121/status"); // ✅ HTTPS URL
+                const data = await response.json();
+                
+                if (data.connected) {
+                    document.getElementById("status").innerText = "🟢 Online";
+                } else {
+                    document.getElementById("status").innerText = "🔴 Offline";
+                }
+            } catch (error) {
+                console.error("❌ Connection Check Failed:", error);
+                document.getElementById("status").innerText = "🔴 Offline";
+            }
+        }
+    
+        function sendCommand(command) {
+            console.log("Sending:", JSON.stringify({ message: command }));
+    
+            fetch("https://3.26.19.121/send", {  // ✅ HTTPS URL
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: command })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("✅ Response:", data);
+                document.getElementById("response").innerText = "Server Response: " + JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error("❌ Fetch Error:", error);
+                document.getElementById("response").innerText = "Error sending command.";
+            });
+        }
+    
+        // Check connection status every 5 seconds
+        setInterval(checkConnection, 5000);
+        checkConnection(); // Initial check when page loads
+    </script>
+    
+</body>
+</html>
