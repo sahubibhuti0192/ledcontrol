@@ -4,45 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESP32 LED Control</title>
+    <title>ESP32 LED Control</title>
 
-<style>
-    #bu1{
-        height: 100 px;
-        color: rgb (255, 255, 255);
-        background-color: #2da837;
-        width: 45 %;
-        display: inline;
-        font-size: 80 px;
-        border-radius: 50 px;
+    <style>
+        #bu1{
+            height: 100 px;
+            color: rgb (255, 255, 255);
+            background-color: #2da837;
+            width: 45%;
+            display: inline;
+            font-size: 80px;
+            border-radius: 50px;
+            
+        }
+        #bu2{
+            height: 100 px;
+            color: rgb (255, 255, 255);
+            background-color: #ff0000;
+            width: 45%;
+            display: inline;
+            font-size: 80px;
+            border-radius: 50px;
+            
+        }
+        h1{
+            font-size: 90px;
+            text-align: center;
+        }
+        p{
+            font-size: 50px;
+        }
+        </style>
+    </head>
         
-    }
-    #bu2{
-        height: 100 px;
-        color: rgb (255, 255, 255);
-        background-color: #ff0000;
-        width: 45 %;
-        display: inline;
-        font-size: 80 px;
-        border-radius: 50 px;
-        
-    }
-    h1{
-        font-size: 90 px;
-        text-align: center;
-    }
-    p{
-        font-size: 50 px;
-    }
-    </style>
-</head>
+    <body>
+        <h1>Smart Door Control</h1>
     
-<body>
-    <h1>ESP32 LED Control</h1>
+        <p><strong>Connection Status:</strong> <span id="status">Connecting...</span></p>
+    
+        <button onclick="sendCommand('ON')" id="bu1">Turn ON</button>
+        <button onclick="sendCommand('OFF')" id="bu2">Turn OFF</button>
 
-    <p><strong>Connection Status:</strong> <span id="status">Connecting...</span></p>
 
-    <button onclick="sendCommand('ON')" id="bu1">Turn ON</button>
-    <button onclick="sendCommand('OFF')" id="bu2">Turn OFF</button>
 
     <p id="response"></p>
 
