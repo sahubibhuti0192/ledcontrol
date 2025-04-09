@@ -6,11 +6,32 @@
     <title>ESP32 LED Control</title>
 
         <style>
-    button{
+    #bu1{
+        height: 100 px;
+        color: rgb (255, 255, 255);
+        background-color: #4CAF50;
+        width: 45 %;
+        display: inline;
+        font-size: 80 px;
+        border-radius: 50 px;
+        
+    }
+            #bu2{
         height: 100px;
-        color: rgb(0, 255, 34);
-        background-color: rgb(10, 10, 10);
-        width: 150 px;
+        color: rgb(255, 255, 255);
+        background-color: #4CAF50;
+        width: 45%;
+        display: inline;
+        font-size: 80px;
+        border-radius: 50px;
+        
+    }
+    h1{
+        font-size: 90px;
+        text-align: center;
+    }
+    p{
+        font-size: 50px;
     }
     </style>
 </head>
@@ -20,8 +41,8 @@
 
     <p><strong>Connection Status:</strong> <span id="status">Connecting...</span></p>
 
-    <button onclick="sendCommand('ON')">Turn ON</button>
-    <button onclick="sendCommand('OFF')">Turn OFF</button>
+    <button onclick="sendCommand('ON')" id="bu1">Turn ON</button>
+    <button onclick="sendCommand('OFF')" id="bu2">Turn OFF</button>
 
     <p id="response"></p>
 
